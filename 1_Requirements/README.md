@@ -3,6 +3,8 @@
 - Bank Management system : With this project, user can perform banking activities like in real bank. This perticular file contains all the details of requirement collection from user end.
 
 # SWOT Analysis
+![Screenshot 2022-02-10 000016](https://user-images.githubusercontent.com/46950972/153266905-62d4cc73-7e67-4719-9dc6-ce3b8c6b3f9d.png)
+
 
 
 # 4W's and 1H
