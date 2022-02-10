@@ -3,9 +3,8 @@
         {
             "name": "Win32",
             "includePath": [
-                "C:\\MinGW\\include",
-                "C:/MinGW/include/c++/11.2.0/tr1",
-                "C:/MinGW/include/c++/11.2.0"
+                "C:\\MinGW\\include"
+                
             ],
             "defines": [
                 "_DEBUG",
