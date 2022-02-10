@@ -1,117 +1,224 @@
 /**
- * @file choice.c
- * @author Ankita Nagaraj Kondagoli
+ * @file bankmanagement.c
+ * @author your P Akash ()
  * @brief 
  * @version 0.1
- * @date 2021-09-06
+ * @date 2022-02-10
  * 
- * @copyright Copyright (c) 2021
+ * @copyright Copyright (c) 2022
  * 
  */
- #include "bank.h"
- #include "header.h"
-#include "unity/unity.h"
-#include "assert.h"
-#include "dollar.h"
-#include "euro.h"
- void menu(void)  
- {
-  int ch;  
+#include <stdio.h>
+#include <conio.h>
+#include <string.h>
+#include <stdlib.h>
  
- printf("\n************************* Welcome to Your Banking Application ******************************\t");
- printf("\nPlease select your required service...");  
- printf("\n 1. For New Account opening \n 2. For Already Existing customer \n 3. Exit");  
- scanf("%d",&ch);  
- switch (ch)  
-   {
-    case 1: new_customer();
-    break;
-    case 2: existing_customer();
-    break;   
-    default:  
-    exit(0);  
-  }  
- }
-
- void fordelay(int j)
-{   int i,k;
-    for(i=0;i<j;i++)
-         k=i;
-}
-void setUp()
+// Structure declaration
+struct acc_type
 {
-
-}
-void tearDown()
+     char bank_name[20];
+     char bank_branch[20];
+     char acc_holder_name[30];
+     int acc_number;
+     char acc_holder_address[100];
+     float available_balance;     
+};
+struct acc_type account[20];
+ 
+/*
+     printf("The above structure can be declared using 
+     typedef like below");
+ 
+     typedef struct acc_type
+     {
+        char bank_name[20];
+        char bank_branch[20];
+        char acc_holder_name[30];
+        int acc_number;
+        char acc_holder_address[100];
+        float available_balance;     
+     }Acc_detail;
+ 
+     Acc_detail account[20];
+*/
+ 
+int num_acc;
+ 
+void Create_new_account();
+void Cash_Deposit();
+void Cash_withdrawl();
+void Account_information();
+void Log_out();
+void display_options();
+ 
+/* main program */
+int main()
 {
-
-}
-void test_doller(void)
-{
-    int n1 = 500, n2 = 75;
-    TEST_ASSERT_EQUAL(6.8, dollar(n1,n2));
-    TEST_ASSERT_EQUAL(0.15, dollar(n2,n1));
-    
-}
-void test_euro(void)
-{
-    int n3 = 500, n4 = 87;
-    TEST_ASSERT_EQUAL(5.7, euro(n3,n4));
-    
-    
-}
- int main(void)
-{   
-     /*required by the unity test framework*/
-    UNITY_BEGIN();
-    /*required by the unity test framework*/
-    RUN_TEST(test_doller);
-    RUN_TEST(test_euro);
-    /*required by the unity test framework*/
-    UNITY_END();
-
-
-
-    int main_exit;
-    char pass[10],password[10]="ankitalnt";
-    int i=0;
-    printf("\n\n\t\tEnter the password to login:");
-    scanf("%s",pass);
-    
-
-    if (strcmp(pass,password)==0)
-        {printf("\n\nPassword Match!\nLOADING");
-        for(i=0;i<=6;i++)
+    char option;
+    char f2f[50] = "http://fresh2refresh.com/";
+    num_acc=0;
+    while(1)
+    {
+       printf("\n***** Welcome to Bank Application *****\n");
+       printf("\nThis demo program is brought you by %s",f2f);
+       display_options();
+       printf("Please enter any options (1/2/3/4/5/6) ");
+       printf("to continue : ");
+ 
+        option = getch();
+        printf("%c \n", option);
+        switch(option)
         {
-            fordelay(100000000);
-            printf(".");
+          case '1': Create_new_account();
+                    break;
+          case '2': Cash_Deposit();
+                    break;
+          case '3': Cash_withdrawl();
+                    break;
+          case '4': Account_information();
+                    break;
+          case '5': return 0;
+          case '6': system("cls");
+                    break;
+          default : system("cls");
+                    printf("Please enter one of the options");
+                    printf("(1/2/3/4/5/6) to continue \n ");
+                    break;
         }
-                system("cls");
-            menu();
-        }
-    else
-        {   printf("\n\nWrong password!!\a\a\a");
-            login_try:
-            printf("\nEnter 1 to try again and 0 to exit:");
-            scanf("%d",&main_exit);
-            if (main_exit==1)
-                    {
-
-                        system("cls");
-                        main();
-                    }
-
-            else if (main_exit==0)
-                    {
-                    system("cls");
-                    }
-            else
-                    {printf("\nInvalid!");
-                    fordelay(1000000000);
-                    system("cls");
-                    goto login_try;}
-
-        }
-       
-        return 0;
+    }
+    return 0;
+}
+ 
+/*Function to display available options in this application*/
+ 
+void display_options()
+{
+    printf("\n1. Create new account \n");
+    printf("2. Cash Deposit \n");
+    printf("3. Cash withdrawl \n");
+    printf("4. Account information \n");
+    printf("5. Log out \n");
+    printf("6. Clear the screen and display available ");
+    printf("options \n\n");
+}
+ 
+/* Function to create new account */
+ 
+void Create_new_account()
+{
+   char bank_name[20];
+   char bank_branch[20];
+   char acc_holder_name[30];
+   int acc_number;
+   char acc_holder_address[100];
+   float available_balance = 0;
+   fflush(stdin);     
+   printf("\nEnter the bank name              : ");
+   scanf("%s", &bank_name);
+   printf("\nEnter the bank branch            : ");
+   scanf("%s", &bank_branch);
+   printf("\nEnter the account holder name    : ");
+   scanf("%s", &acc_holder_name);
+   printf("\nEnter the account number(1 to 10): ");
+   scanf("%d", &acc_number);
+   printf("\nEnter the account holder address : ");
+   scanf("%s", &acc_holder_address);
+ 
+   strcpy(account[acc_number-1].bank_name,bank_name);
+   strcpy(account[acc_number-1].bank_branch,bank_branch);
+   strcpy(account[acc_number-1].acc_holder_name,
+   acc_holder_name);
+   account[acc_number-1].acc_number=acc_number;
+   strcpy(account[acc_number-1].acc_holder_address,
+   acc_holder_address);
+   account[acc_number-1].available_balance=available_balance;
+ 
+   printf("\nAccount has been created successfully \n\n");
+   printf("Bank name              : %s \n" , 
+   account[acc_number-1].bank_name);
+   printf("Bank branch            : %s \n" , 
+   account[acc_number-1].bank_branch);
+   printf("Account holder name    : %s \n" , 
+   account[acc_number-1].acc_holder_name);
+   printf("Account number         : %d \n" , 
+   account[acc_number-1].acc_number);
+   printf("Account holder address : %s \n" , 
+   account[acc_number-1].acc_holder_address);
+   printf("Available balance      : %f \n" , 
+   account[acc_number-1].available_balance);
+ 
+   //num_acc++;
+ 
+}
+ 
+// Displaying account informations
+ 
+void Account_information()
+{
+     register int num_acc = 0;
+     //if (!strcmp(customer,account[count].name))
+     while(strlen(account[num_acc].bank_name)>0)
+     {
+         printf("\nBank name                : %s \n" , 
+         account[num_acc].bank_name);
+         printf("Bank branch              : %s \n" , 
+         account[num_acc].bank_branch);
+         printf("Account holder name      : %s \n" , 
+         account[num_acc].acc_holder_name);
+         printf("Account number           : %d \n" , 
+         account[num_acc].acc_number);
+         printf("Account holder address   : %s \n" , 
+         account[num_acc].acc_holder_address);
+         printf("Available balance        : %f \n\n" , 
+         account[num_acc].available_balance);
+         num_acc++;
+     }
+}
+ 
+// Function to deposit amount in an account
+ 
+void Cash_Deposit()
+{
+   auto int acc_no;
+   float add_money;
+ 
+   printf("Enter account number you want to deposit money:");
+   scanf("%d",&acc_no);
+   printf("\nThe current balance for account %d is %f \n", 
+   acc_no, account[acc_no-1].available_balance);
+   printf("\nEnter money you want to deposit :  ");
+   scanf("%f",&add_money);
+ 
+   while (acc_no=account[acc_no-1].acc_number)
+   {
+         account[acc_no-1].available_balance=
+         account[acc_no-1].available_balance+add_money;
+         printf("\nThe New balance for account %d is %f \n", 
+         acc_no, account[acc_no-1].available_balance);
+         break; 
+   }acc_no++;
+}
+ 
+// Function to withdraw amount from an account
+ 
+void Cash_withdrawl()
+{
+   auto int acc_no;
+   float withdraw_money;
+ 
+   printf("Enter account number you want to withdraw money:");
+   scanf("%d",&acc_no);
+   printf("\nThe current balance for account %d is %f \n", 
+   acc_no, account[acc_no-1].available_balance);
+   printf("\nEnter money you want to withdraw from account ");
+   scanf("%f",&withdraw_money);
+ 
+   while (acc_no=account[acc_no-1].acc_number)
+   {
+         account[acc_no-1].available_balance=
+         account[acc_no-1].available_balance-withdraw_money;
+         printf("\nThe New balance for account %d is %f \n", 
+         acc_no, account[acc_no-1].available_balance);
+         break; 
+   }acc_no++;
 }
