@@ -12,8 +12,8 @@
 
 ## Table no: Low level test plan
 
-| **Test ID** | **Description**                                              | **Exp IN** | **Exp OUT** | **Actual Out** |**Type Of Test**  |    
-|-------------|--------------------------------------------------------------|------------|-------------|----------------|------------------|
-|  LLR1       |If user enters wrong Account Number. | 000000000| Wrong account number...| Wrong account number...|Requirement based |
-|  LLR2       |If wrong choice choosen| 7|Invalid choice|Exit|Scenario based    |
+| **Test ID** | **Description**                                              | **Exp IN** | **Exp OUT** |   
+|-------------|--------------------------------------------------------------|------------|-------------|
+|  LLR1       |If user enters wrong Account Number. | 000000000| Wrong account number...| 
+|  LLR2       |If wrong choice choosen| 7|Invalid choice|
 
