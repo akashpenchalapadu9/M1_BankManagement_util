@@ -1,9 +1,9 @@
  /**
  * @file choice.c
- * @author P Akash
+ * @author p akash
  * @brief 
  * @version 0.1
- * @date 2022-02-09
+ * @date 2022-03-02
  * 
  * @copyright Copyright (c) 2021
  * 
@@ -73,7 +73,7 @@ void test_euro(void)
 
 
     int main_exit;
-    char pass[10],password[10]="ankitalnt";
+    char pass[10],password[10]="akashpench";
     int i=0;
     printf("\n\n\t\tEnter the password to login:");
     scanf("%s",pass);
